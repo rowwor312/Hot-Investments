@@ -7,7 +7,6 @@
     "start": "node server.js",
     "lint": "eslint --quiet .",
     "fix": "eslint --fix ."
-
   },
   "license": "ISC",
   "dependencies": {

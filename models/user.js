@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define("User", {
     user_name: {
       type: DataTypes.STRING,
@@ -12,10 +12,10 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [10,25],
+        len: [10, 25],
         msg: "Password must be between 10 and 25 characters in length."
       }
-    }, 
+    },
     income: {
       type: DataTypes.INTEGER,
       allowNull: false

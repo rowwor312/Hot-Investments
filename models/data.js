@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
     var User_data = sequelize.define("User_data", {
         category: {
             type: DataTypes.STRING,
@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             default: 0
         },
-        
+
 
 
 
