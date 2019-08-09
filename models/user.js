@@ -16,6 +16,10 @@ module.exports = function(sequelize, DataTypes) {
         msg: "Password must be between 10 and 25 characters in length."
       }
     }, 
+    income: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   });
   return User;
 };
