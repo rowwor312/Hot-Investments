@@ -16,11 +16,15 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             default: 0
         },
-
-
-
-
-
     });
+
+    User_data.associate = function (models) {
+        User_data.belongsTo(models.User, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
+
     return User_data;
 };
