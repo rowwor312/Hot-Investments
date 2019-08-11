@@ -1,99 +1,41 @@
-// Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
-var $submitBtn = $("#submit");
-var $exampleList = $("#example-list");
+$(function() {
+  //click function for create account button to add extra field for Income
+  $("#new-acc-btn").click(function(event) {
+    event.preventDefault();
 
-// The API object contains methods for each kind of request we'll make
-var API = {
-  saveExample: function(example) {
-    return $.ajax({
-      headers: {
-        "Content-Type": "application/json"
-      },
-      type: "POST",
-      url: "api/examples",
-      data: JSON.stringify(example)
-    });
-  },
-  getExamples: function() {
-    return $.ajax({
-      url: "api/examples",
-      type: "GET"
-    });
-  },
-  deleteExample: function(id) {
-    return $.ajax({
-      url: "api/examples/" + id,
-      type: "DELETE"
-    });
-  }
-};
+    //creating new container div and giving it the "form-group" class
+    var newForm = $("<div>");
+    newForm.addClass("form-group");
 
-// refreshExamples gets new examples from the db and repopulates the list
-var refreshExamples = function() {
-  API.getExamples().then(function(data) {
-    var $examples = data.map(function(example) {
-      var $a = $("<a>")
-        .text(example.text)
-        .attr("href", "/example/" + example.id);
+    //creating new lable element and adding the "for" attribute and "Income" heading
+    var newLabel = $("<label>");
+    newLabel.attr("for", "Income");
+    newLabel.text("Income");
 
-      var $li = $("<li>")
-        .attr({
-          class: "list-group-item",
-          "data-id": example.id
-        })
-        .append($a);
-
-      var $button = $("<button>")
-        .addClass("btn btn-danger float-right delete")
-        .text("ｘ");
-
-      $li.append($button);
-
-      return $li;
+    //creating new input element and adding attributes
+    var newInput = $("<input>");
+    newInput.attr({
+      class: "form-control",
+      type: "income",
+      id: "user_income",
+      placeholder: "10000000"
     });
 
-    $exampleList.empty();
-    $exampleList.append($examples);
+    //prepending new label and input to the newForm div
+    newForm.prepend(newInput);
+    newForm.prepend(newLabel);
+
+    //appending newForm div to the wider container div
+    $(".input-con").append(newForm);
+    $(".underline").text("Account Creation");
+
+    //hiding create account button
+    $("#new-acc-btn").hide();
+    //changing text of login button to "Submit"
+    $("#login").text("Submit");
+    //changing login button color to yellow w/ bootstrap class
+    $("#login").attr("class", "btn-warning");
+    //adding bootstrap btn class for style
+    $("#login").addClass("btn");
   });
-};
-
-// handleFormSubmit is called whenever we submit a new example
-// Save the new example to the db and refresh the list
-var handleFormSubmit = function(event) {
-  event.preventDefault();
-
-  var example = {
-    text: $exampleText.val().trim(),
-    description: $exampleDescription.val().trim()
-  };
-
-  if (!(example.text && example.description)) {
-    alert("You must enter an example text and description!");
-    return;
-  }
-
-  API.saveExample(example).then(function() {
-    refreshExamples();
-  });
-
-  $exampleText.val("");
-  $exampleDescription.val("");
-};
-
-// handleDeleteBtnClick is called when an example's delete button is clicked
-// Remove the example from the db and refresh the list
-var handleDeleteBtnClick = function() {
-  var idToDelete = $(this)
-    .parent()
-    .attr("data-id");
-
-  API.deleteExample(idToDelete).then(function() {
-    refreshExamples();
-  });
-};
-
-// Add event listeners to the submit and delete buttons
-$submitBtn.on("click", handleFormSubmit);
-$exampleList.on("click", ".delete", handleDeleteBtnClick);
+});
