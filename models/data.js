@@ -1,9 +1,5 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   var UserData = sequelize.define("User_data", {
-    category: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     expense: {
       type: DataTypes.STRING,
       allowNull: false
@@ -15,11 +11,11 @@ module.exports = function (sequelize, DataTypes) {
     spent: {
       type: DataTypes.INTEGER,
       default: 0
-    },
-});
+    }
+  });
 
-  UserData.associate = function (models) {
-    UserData.belongsTo(models.User, {
+  UserData.associate = function(models) {
+    UserData.belongsTo(models.Category, {
       foreignKey: {
         allowNull: false
       }
