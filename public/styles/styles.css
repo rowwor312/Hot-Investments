@@ -1,3 +1,26 @@
-.list-group-item {
-  line-height: 2.5;
+
+body, html {
+  background: url("") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'Lexend Deca', sans-serif;
+  color: whitesmoke;
+}
+
+
+.form-con {
+  border-radius: 5px;
+  padding: 20px;
+  background: rgb(26, 20, 20); 
+  background: rgba(5, 4, 4, 0.5);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.underline {
+  border-bottom: 2px solid whitesmoke;
 }
