@@ -1,6 +1,10 @@
 $(function() {
   var cats = ["Food", "Entertainment", "Housing", "Transportation"];
   var vals = ["$700", "$300", "$1000", "$500"];
+  var inputNum = 5;
+
+  $("#new-row").hide();
+  $(".cat-val").hide();
 
   //click function for create account button to add extra field for Income
   $("#new-acc-btn").click(function(event) {
@@ -21,36 +25,8 @@ $(function() {
       class: "form-control",
       type: "income",
       id: "user-inc",
-      placeholder: "10000000"
+      placeholder: "$10000000"
     });
-    //div for budget categories
-    var catDiv = $("<div>");
-    catDiv.attr("class", "form-group");
-    catDiv.addClass("form-row col-6 col-sm-6 col-md-6 col-lg-6");
-    catDiv.css({
-      display: "inline-block",
-      width: "50%"
-    });
-    //heading for categories div
-    var catHead = $("<h6>");
-    catHead.text("Budget Categories");
-
-    catDiv.prepend(catHead);
-
-    //div for budget values
-    var valDiv = $("<div>");
-    valDiv.attr("class", "form-group");
-    valDiv.addClass("form-row col-6 col-sm-6 col-md-6 col-lg-6");
-    valDiv.css({
-      display: "inline-block",
-      width: "50%"
-    });
-
-    //heading for values div
-    var valHead = $("<h6>");
-    valHead.text("Funds Allocated");
-
-    valDiv.prepend(valHead);
 
     //loop generating category inputs
     for (i = 0; i < 4; i++) {
@@ -62,7 +38,7 @@ $(function() {
         placeholder: cats[i]
       });
       catInc.css("margin-bottom", "20px");
-      catDiv.append(catInc);
+      $("#cat-div").append(catInc);
     }
 
     //loop generating value inputs
@@ -75,25 +51,49 @@ $(function() {
         placeholder: vals[i]
       });
       catVal.css("margin-bottom", "20px");
-      valDiv.append(catVal);
+      $("#val-div").append(catVal);
     }
     //prepending new label and input to the newForm div
     newForm.prepend(incInput);
     newForm.prepend(incLabel);
 
-    //appending newForm and budget divs cat/val to the wider container div
-    $(".input-con").append(newForm);
-    $(".input-con").append(catDiv);
-    $(".input-con").append(valDiv);
+    //adding newForm to the wider container div
+    newForm.insertAfter($(".pw"));
     $(".underline").text("Account Creation");
 
     //hiding create account button
     $("#new-acc-btn").hide();
+    $("#new-row").show();
+    $(".cat-val").show();
     //changing text of login button to "Submit"
     $("#login").text("Submit");
-    //changing login button color to yellow w/ bootstrap class
-    $("#login").attr("class", "btn-warning");
-    //adding bootstrap btn class for style
-    $("#login").addClass("btn");
+    //changing login button color to yellow w/ bootstrap class and adding bootstrap btn class for style
+    $("#login").addClass("btn btn-warning");
+  });
+
+  //new form row input fields
+  $(document).on("click", "#new-row", function(event) {
+    event.preventDefault();
+    var catInc = $("<input>");
+    catInc.attr({
+      class: "form-control",
+      type: "budget-category",
+      id: "bud-cat-" + inputNum,
+      placeholder: "Shoes"
+    });
+    catInc.css("margin-bottom", "20px");
+    $("#cat-div").append(catInc);
+
+    var catVal = $("<input>");
+    catVal.attr({
+      class: "form-control",
+      type: "budget-value",
+      id: "bud-val-" + inputNum,
+      placeholder: "$400"
+    });
+    catVal.css("margin-bottom", "20px");
+    $("#val-div").append(catVal);
+
+    inputNum++;
   });
 });

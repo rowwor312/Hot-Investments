@@ -25,3 +25,8 @@ body, html {
   border-bottom: 2px solid whitesmoke;
 }
 
+.cat-val {
+  display: inline-block;
+  width: 50%;
+}
+
