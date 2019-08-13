@@ -1,5 +1,5 @@
-module.exports = function (sequelize, DataTypes) {
-  var Category = sequelize.define("User_data", {
+module.exports = function(sequelize, DataTypes) {
+  var Category = sequelize.define("Category", {
     category: {
       type: DataTypes.STRING,
       allowNull: false
@@ -7,7 +7,7 @@ module.exports = function (sequelize, DataTypes) {
   });
 
   Category.associate = function(models) {
-    Category.belongsTo(models.User, {
+    Category.belongsTo(models.User_data, {
       foreignKey: {
         allowNull: false
       }

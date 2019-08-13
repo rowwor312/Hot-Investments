@@ -1,7 +1,16 @@
 $(function() {
   var cats = ["Food", "Entertainment", "Housing", "Transportation"];
   var vals = ["$700", "$300", "$1000", "$500"];
-  var inputNum = 5;
+  var inputNum = 4;
+  var userName = $("#user_name");
+  var pw = $("password");
+  var login = $("#login-form");
+  var newUser = false;
+  var budgetCat = [];
+  var budgetVal = [];
+
+  
+   
 
   $("#new-row").hide();
   $(".cat-val").hide();
@@ -39,6 +48,7 @@ $(function() {
       });
       catInc.css("margin-bottom", "20px");
       $("#cat-div").append(catInc);
+      budgetCat.push(catInc.attr("id"));
     }
 
     //loop generating value inputs
@@ -52,6 +62,7 @@ $(function() {
       });
       catVal.css("margin-bottom", "20px");
       $("#val-div").append(catVal);
+      budgetVal.push(catVal.attr("id"));
     }
     //prepending new label and input to the newForm div
     newForm.prepend(incInput);
@@ -96,4 +107,37 @@ $(function() {
 
     inputNum++;
   });
+
+  // $(login).on("submit", function formSubmit(event) {
+  //   event.preventDefault();
+
+  //   if (!titleInput.val().trim() || !bodyInput.val().trim()) {
+  //     return;
+  //   }
+
+  //   var newLogin = {
+  //     userName: userName.val().trim(),
+  //     password: pw.val().trim()
+  //   };
+
+  //   var newUser = {
+  //     userName: userName.val().trim(),
+  //     password: pw.val().trim(),
+  //     category: 
+  //   };
+
+  //   console.log("newLogin");
+  //   console.log("newUser");
+
+
+
+
+
+
+
+  // });
+
+
+
+
 });
