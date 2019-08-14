@@ -17,6 +17,31 @@ module.exports = function (app) {
     });
   });
 
+  app.get("/api/users/:id", function (req, res) {
+    db.User.findOne({
+      where: {
+        id: req.params.id
+      },
+      attributes: [
+        'models.User.userName',
+        'models.User.income'
+      ],
+      include: [
+        {
+          model: db.Category,
+          include: [
+            {
+              model: db.UserData,
+              attributes: [[models.sequelize.fn('sum', models.sequelize.col('UserData.spent')), 'total_spent']]
+            }
+          ]
+        }
+      ]
+    }).then(function (dbAuthor) {
+      res.json(dbAuthor);
+    });
+  });
+
   // Render 404 page for any unmatched routes
   app.get("*", function (req, res) {
     res.render("404");
