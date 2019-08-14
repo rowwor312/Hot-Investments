@@ -5,8 +5,9 @@ body, html {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  background-color: yellow;
   font-family: 'Lexend Deca', sans-serif;
-  color: whitesmoke;
+  color: green
 }
 
 
