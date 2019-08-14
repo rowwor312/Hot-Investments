@@ -132,10 +132,6 @@ $(function() {
       newUser["budget"+i] = budget;
       newUser["category"+i] = category;
     }
-
-    // whatsInTheArray(budgetCat, newUser.category);
-    // whatsInTheArray(budgetVal, newUser.budget);
-
     console.log(newLogin);
     console.log(newUser);
   });
