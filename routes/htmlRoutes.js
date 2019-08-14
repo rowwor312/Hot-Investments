@@ -17,7 +17,7 @@ module.exports = function (app) {
     });
   });
 
-  app.get("/api/users/:id", function (req, res) {
+  app.get("/users/:id", function (req, res) {
     db.User.findOne({
       where: {
         id: req.params.id
@@ -32,7 +32,7 @@ module.exports = function (app) {
           include: [
             {
               model: db.UserData,
-              attributes: [[models.sequelize.fn('sum', models.sequelize.col('UserData.spent')), 'total_spent']]
+              attributes: [[models.sequelize.fn('sum', models.sequelize.col('spent')), 'total_spent']]
             }
           ]
         }
