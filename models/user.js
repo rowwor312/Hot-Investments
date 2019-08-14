@@ -4,16 +4,16 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [5],
-        msg: "Name must be at least 5 characters in length."
+        len: [5]
+        // msg: "Name must be at least 5 characters in length."
       }
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [10, 25],
-        msg: "Password must be between 10 and 25 characters in length."
+        len: [10, 25]
+        // msg: "Password must be between 10 and 25 characters in length."
       }
     },
     income: {
