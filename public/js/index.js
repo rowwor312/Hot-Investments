@@ -14,6 +14,8 @@ $(function() {
   $("#new-acc-btn").click(function(event) {
     event.preventDefault();
 
+    $("#login-form").attr("action", "/signup");
+
     //creating new container div and giving it the "form-group" class
     var newForm = $("<div>");
     newForm.addClass("form-group");
@@ -73,8 +75,10 @@ $(function() {
     $(".cat-val").show();
     //changing text of login button to "Submit"
     $("#login").text("Submit");
+    $("#login").attr("type","submit");
     //changing login button color to yellow w/ bootstrap class and adding bootstrap btn class for style
     $("#login").addClass("btn btn-warning");
+    $("#login").attr("id", "new-user")
   });
 
   //new form row input fields
@@ -115,15 +119,17 @@ $(function() {
 
     //object for returning user
     var newLogin = {
-      userName: userName.val().trim(),
+      username: userName.val().trim(),
       password: pw.val().trim()
     };
 
     //object for new user
     var newUser = {
-      userName: userName.val().trim(),
+      username: userName.val().trim(),
       password: pw.val().trim()
     };
+
+    $.post("/signup", newUser);
 
     //loop that grabs inputs from generated form elements and addes it to object
     for (let i = 0; i<inputNum; i++) {
@@ -131,8 +137,7 @@ $(function() {
       let category = $("#bud-val-" +i).val().trim();
       newUser["budget"+i] = budget;
       newUser["category"+i] = category;
-    }
-    console.log(newLogin);
-    console.log(newUser);
+    } 
+    
   });
 });
