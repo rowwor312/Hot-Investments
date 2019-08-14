@@ -1,17 +1,13 @@
-module.exports = function(sequelize, DataTypes) {
-  var Category = sequelize.define("Category", {
+module.exports = function (sequelize, DataTypes) {
+  var Category = sequelize.define("category", {
     category: {
       type: DataTypes.STRING,
-      allowNull: false
-    },
-    budget: {
-      type: DataTypes.INTEGER,
       allowNull: false
     }
   });
 
   Category.associate = function(models) {
-    Category.belongsTo(models.User_data, {
+    Category.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
       }
