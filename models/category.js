@@ -3,6 +3,10 @@ module.exports = function(sequelize, DataTypes) {
     category: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    budget: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   });
 

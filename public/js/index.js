@@ -3,14 +3,9 @@ $(function() {
   var vals = ["$700", "$300", "$1000", "$500"];
   var inputNum = 4;
   var userName = $("#user_name");
-  var pw = $("password");
+  var pw = $("#password");
   var login = $("#login-form");
   var newUser = false;
-  var budgetCat = [];
-  var budgetVal = [];
-
-  
-   
 
   $("#new-row").hide();
   $(".cat-val").hide();
@@ -48,7 +43,7 @@ $(function() {
       });
       catInc.css("margin-bottom", "20px");
       $("#cat-div").append(catInc);
-      budgetCat.push(catInc.attr("id"));
+      // budgetCat.push(catInc.attr("id"));
     }
 
     //loop generating value inputs
@@ -62,7 +57,7 @@ $(function() {
       });
       catVal.css("margin-bottom", "20px");
       $("#val-div").append(catVal);
-      budgetVal.push(catVal.attr("id"));
+      // budgetVal.push(catVal.attr("id"));
     }
     //prepending new label and input to the newForm div
     newForm.prepend(incInput);
@@ -108,36 +103,40 @@ $(function() {
     inputNum++;
   });
 
-  // $(login).on("submit", function formSubmit(event) {
-  //   event.preventDefault();
+  //form submission
+  $(login).on("submit", function formSubmit(event) {
+    event.preventDefault();
 
-  //   if (!titleInput.val().trim() || !bodyInput.val().trim()) {
-  //     return;
-  //   }
+    //checks for empty login fields and disallows.
+    if (!userName.val().trim() || !pw.val().trim()) {
+      alert("Please enter your username and password.")
+      return;
+    }
 
-  //   var newLogin = {
-  //     userName: userName.val().trim(),
-  //     password: pw.val().trim()
-  //   };
+    //object for returning user
+    var newLogin = {
+      userName: userName.val().trim(),
+      password: pw.val().trim()
+    };
 
-  //   var newUser = {
-  //     userName: userName.val().trim(),
-  //     password: pw.val().trim(),
-  //     category: 
-  //   };
+    //object for new user
+    var newUser = {
+      userName: userName.val().trim(),
+      password: pw.val().trim()
+    };
 
-  //   console.log("newLogin");
-  //   console.log("newUser");
+    //loop that grabs inputs from generated form elements and addes it to object
+    for (let i = 0; i<inputNum; i++) {
+      let budget = $("#bud-cat-" + i).val().trim();
+      let category = $("#bud-val-" +i).val().trim();
+      newUser["budget"+i] = budget;
+      newUser["category"+i] = category;
+    }
 
+    // whatsInTheArray(budgetCat, newUser.category);
+    // whatsInTheArray(budgetVal, newUser.budget);
 
-
-
-
-
-
-  // });
-
-
-
-
+    console.log(newLogin);
+    console.log(newUser);
+  });
 });
