@@ -143,6 +143,7 @@ $(function() {
     if (newLog) {
       $.post("/signup", newUser);
       console.log("new user" + newUser);
+      $.post("/api/category", newUser);
     } else {
       $.post("/login", newLogin);
       console.log("login" + newLogin);
