@@ -5,7 +5,7 @@ $(function() {
   var userName = $("#user_name");
   var pw = $("#password");
   var login = $("#login-form");
-  var newUser = false;
+  var newLog = false;
 
   $("#new-row").hide();
   $(".cat-val").hide();
@@ -14,6 +14,7 @@ $(function() {
   $("#new-acc-btn").click(function(event) {
     event.preventDefault();
 
+    newLog = true;
     $("#login-form").attr("action", "/signup");
 
     //creating new container div and giving it the "form-group" class
@@ -129,7 +130,7 @@ $(function() {
       password: pw.val().trim()
     };
 
-    $.post("/signup", newUser);
+   
 
     //loop that grabs inputs from generated form elements and addes it to object
     for (let i = 0; i<inputNum; i++) {
@@ -138,6 +139,14 @@ $(function() {
       newUser["budget"+i] = budget;
       newUser["category"+i] = category;
     } 
+
+    if (newLog) {
+      $.post("/signup", newUser);
+      console.log("new user" + newUser);
+    } else {
+      $.post("/login", newLogin);
+      console.log("login" + newLogin);
+    }
     
   });
 });

@@ -1,16 +1,4 @@
-
-// *********************************************************************************
-// api-routes.js - this file offers a set of routes for displaying and saving data to the db
-// *********************************************************************************
-
-// Dependencies
-// =============================================================
-
-// Requiring our ____ model
 var db = require("../models");
-
-// Routes
-// =============================================================
 
 module.exports = function(app) {
   console.log(db.User_data)
@@ -27,7 +15,7 @@ module.exports = function(app) {
       res.json(result)
     })
   })
-  
+
   // Delete an example by id
   app.delete("/api/examples/:id", function(req, res) {
     db.Example.destroy({ where: { id: req.params.id } }).then(function(
@@ -35,6 +23,7 @@ module.exports = function(app) {
     ) {
       res.json(dbExample);
     });
+  });
 
   app.post("/api/category", function(req, res) {
     console.log(req.body);
@@ -51,8 +40,9 @@ module.exports = function(app) {
       .then(function(dbPost) {
         res.json(dbPost);
       });
-  })
-}
+  });
+};
+
 
   // DELETE route for deleting _______
   // app.delete("/api/posts/:id", function(req, res) {
