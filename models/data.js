@@ -1,10 +1,10 @@
 module.exports = function(sequelize, DataTypes) {
   var UserData = sequelize.define("User_data", {
-    expense: {
+    categorySpec: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    budget: {
+    budgetSpec: {
       type: DataTypes.INTEGER,
       allowNull: false
     },

@@ -1,7 +1,11 @@
 $(function() {
   var cats = ["Food", "Entertainment", "Housing", "Transportation"];
   var vals = ["$700", "$300", "$1000", "$500"];
-  var inputNum = 5;
+  var inputNum = 4;
+  var userName = $("#user_name");
+  var pw = $("#password");
+  var login = $("#login-form");
+  var newLog = false;
 
   $("#new-row").hide();
   $(".cat-val").hide();
@@ -9,6 +13,9 @@ $(function() {
   //click function for create account button to add extra field for Income
   $("#new-acc-btn").click(function(event) {
     event.preventDefault();
+
+    newLog = true;
+    $("#login-form").attr("action", "/signup");
 
     //creating new container div and giving it the "form-group" class
     var newForm = $("<div>");
@@ -39,6 +46,7 @@ $(function() {
       });
       catInc.css("margin-bottom", "20px");
       $("#cat-div").append(catInc);
+      // budgetCat.push(catInc.attr("id"));
     }
 
     //loop generating value inputs
@@ -52,6 +60,7 @@ $(function() {
       });
       catVal.css("margin-bottom", "20px");
       $("#val-div").append(catVal);
+      // budgetVal.push(catVal.attr("id"));
     }
     //prepending new label and input to the newForm div
     newForm.prepend(incInput);
@@ -67,8 +76,10 @@ $(function() {
     $(".cat-val").show();
     //changing text of login button to "Submit"
     $("#login").text("Submit");
+    $("#login").attr("type","submit");
     //changing login button color to yellow w/ bootstrap class and adding bootstrap btn class for style
     $("#login").addClass("btn btn-warning");
+    $("#login").attr("id", "new-user")
   });
 
   //new form row input fields
@@ -95,5 +106,48 @@ $(function() {
     $("#val-div").append(catVal);
 
     inputNum++;
+  });
+
+  //form submission
+  $(login).on("submit", function formSubmit(event) {
+    event.preventDefault();
+
+    //checks for empty login fields and disallows.
+    if (!userName.val().trim() || !pw.val().trim()) {
+      alert("Please enter your username and password.")
+      return;
+    }
+
+    //object for returning user
+    var newLogin = {
+      username: userName.val().trim(),
+      password: pw.val().trim()
+    };
+
+    //object for new user
+    var newUser = {
+      username: userName.val().trim(),
+      password: pw.val().trim()
+    };
+
+   
+
+    //loop that grabs inputs from generated form elements and addes it to object
+    for (let i = 0; i<inputNum; i++) {
+      let budget = $("#bud-cat-" + i).val().trim();
+      let category = $("#bud-val-" +i).val().trim();
+      newUser["budget"+i] = budget;
+      newUser["category"+i] = category;
+    } 
+
+    if (newLog) {
+      $.post("/signup", newUser);
+      console.log("new user" + newUser);
+      $.post("/api/category", newUser);
+    } else {
+      $.post("/login", newLogin);
+      console.log("login" + newLogin);
+    }
+    
   });
 });
