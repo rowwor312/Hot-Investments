@@ -9,11 +9,22 @@ module.exports = function (app) {
   });
 
   // Load example page and pass in an example by id
-  app.get("/example/:id", function (req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function (dbExample) {
-      res.render("example", {
-        example: dbExample
-      });
+  app.get("/category/:id", function (req, res) {
+    db.Category.findOne({ 
+      where: { 
+        id: req.params.id 
+      },
+      attributes: [
+        'category'
+      ],
+      include: [
+        {
+          model: db.User_data,
+          attributes: [[db.sequelize.fn('sum', db.sequelize.col('spent')), 'total_spent']]
+        }
+      ]
+     }).then(function (dbAuthor) {
+      res.json(dbAuthor);
     });
   });
 
@@ -23,20 +34,23 @@ module.exports = function (app) {
         id: req.params.id
       },
       attributes: [
-        'models.User.userName',
-        'models.User.income'
-      ],
+        'userName',
+        'income'
+      ], 
       include: [
         {
           model: db.Category,
+          attributes: [],
           include: [
             {
-              model: db.UserData,
-              attributes: [[models.sequelize.fn('sum', models.sequelize.col('spent')), 'total_spent']]
+              model: db.User_data,
+              attributes: [[db.sequelize.fn('sum', db.sequelize.col('spent')), 'total_spent']]
             }
           ]
         }
       ]
+      
+     
     }).then(function (dbAuthor) {
       res.json(dbAuthor);
     });

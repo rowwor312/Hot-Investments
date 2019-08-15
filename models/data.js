@@ -1,5 +1,5 @@
 module.exports = function (sequelize, DataTypes) {
-  var UserData = sequelize.define("User_data", {
+  var User_data = sequelize.define("User_data", {
     expense: {
       type: DataTypes.STRING,
       allowNull: false
@@ -14,13 +14,13 @@ module.exports = function (sequelize, DataTypes) {
     }
   });
 
-  UserData.associate = function (models) {
-    UserData.belongsTo(models.Category, {
+  User_data.associate = function(models) {
+    User_data.belongsTo(models.Category, {
       foreignKey: {
         allowNull: false
       }
     });
   };
 
-  return UserData;
+  return User_data;
 };
