@@ -4,17 +4,23 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    budget: {
-      type: DataTypes.STRING,
+    catBudget: {
+      type: DataTypes.INTEGER,
       allowNull: false
     }
   });
 
   Category.associate = function(models) {
-    Category.belongsTo(models.User_data, {
+    Category.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
       }
+    });
+  };
+
+  Category.associate = function(models) {
+    Category.hasMany(models.useExp, {
+      onDelete: "cascade"
     });
   };
 
