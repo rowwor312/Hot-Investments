@@ -18,13 +18,21 @@
     "ejs": "^2.3.2",
     "express": "^4.17.0",
     "express-handlebars": "^3.1.0",
+<<<<<<< HEAD
     "express-session": "^1.16.2",
+=======
+    "express-session": "^1.11.3",
+>>>>>>> origin/master
     "morgan": "^1.6.0",
     "mysql": "^2.7.0",
     "mysql2": "^1.6.5",
     "passport": "^0.2.2",
     "passport-local": "^1.0.0",
+<<<<<<< HEAD
     "sequelize": "^5.8.6"
+=======
+    "sequelize": "^5.15.0"
+>>>>>>> origin/master
   },
   "devDependencies": {
     "chai": "^4.2.0",
