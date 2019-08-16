@@ -23,7 +23,7 @@ A budget app using the MVC architectural pattern.
 
 
 **View Site**
-Hyper link to the Heroku site: use a picture of the home page
+https://hotinvestments.herokuapp.com/
 
 **Prerequisites**
 
