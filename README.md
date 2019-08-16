@@ -1,5 +1,7 @@
 **Hot-Investments**
+
 A budget app using the MVC architectural pattern.
+
 
 **Topics Covered**
 
@@ -26,11 +28,13 @@ A budget app using the MVC architectural pattern.
 
 https://hotinvestments.herokuapp.com/
 
+
 **Prerequisites**
 
 1.	Node.js 
 2.	To install node visit Node.js Website and install node for your
 operating system.
+
 
 **Installation**
 
@@ -38,6 +42,7 @@ operating system.
 2.	$ git clone <repo>
 3.	Navigate to the directory and install the dependencies
 4.	$ npm install
+
 
 **Application Design**
 
