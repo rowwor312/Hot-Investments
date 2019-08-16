@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define("User", {
-    username: {
+    userName: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
@@ -16,17 +16,15 @@ module.exports = function(sequelize, DataTypes) {
         // msg: "Password must be between 10 and 25 characters in length."
       }
     },
-    income: {
+    totalBudget: {
       type: DataTypes.INTEGER,
       allowNull: false
     }
   });
-
   User.associate = function(models) {
-    User.hasMany(models.User_data, {
+    User.hasMany(models.Category, {
       onDelete: "cascade"
     });
   };
-
   return User;
 };
