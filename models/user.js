@@ -1,4 +1,4 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define("User", {
     userName: {
       type: DataTypes.STRING,
@@ -16,7 +16,7 @@ module.exports = function (sequelize, DataTypes) {
         // msg: "Password must be between 10 and 25 characters in length."
       }
     },
-    income: {
+    totalBudget: {
       type: DataTypes.INTEGER,
       allowNull: false
     }

@@ -3,6 +3,10 @@ module.exports = function(sequelize, DataTypes) {
     category: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    catBudget: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   });
 
@@ -15,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
   };
 
   Category.associate = function(models) {
-    Category.hasMany(models.User_data, {
+    Category.hasMany(models.useExp, {
       onDelete: "cascade"
     });
   };
