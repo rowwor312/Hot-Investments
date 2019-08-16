@@ -1,10 +1,10 @@
 module.exports = function(sequelize, DataTypes) {
-  var UserData = sequelize.define("User_data", {
-    categorySpec: {
+  var useExp = sequelize.define("useExp", {
+    expense: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    budgetSpec: {
+    budget: {
       type: DataTypes.INTEGER,
       allowNull: false
     },
@@ -13,14 +13,13 @@ module.exports = function(sequelize, DataTypes) {
       default: 0
     }
   });
-
-  UserData.associate = function(models) {
-    UserData.belongsTo(models.User, {
+  useExp.associate = function(models) {
+    useExp.belongsTo(models.Category, {
       foreignKey: {
         allowNull: false
       }
     });
   };
 
-  return UserData;
+  return useExp;
 };

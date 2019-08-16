@@ -1,55 +1,37 @@
 var db = require("../models");
-
-module.exports = function(app, passport) {
+var path = require("path");
+module.exports = function (app) {
   // Load index page
-
-  app.post(
-    "/login",
-    passport.authenticate("local-login", {
-      successRedirect: "/profile", // redirect to the secure profile section
-      failureRedirect: "/login", // redirect back to the signup page if there is an error
-      failureFlash: true // allow flash messages
-    }),
-    function(req, res) {
-      console.log("hello");
-
-      if (req.body.remember) {
-        req.session.cookie.maxAge = 1000 * 60 * 3;
-      } else {
-        req.session.cookie.expires = false;
-      }
-      res.redirect("/");
-    }
-  );
-
-  app.post(
-    "/signup",
-    passport.authenticate("local-signup", {
-      successRedirect: "/profile", // redirect to the secure profile section
-      failureRedirect: "/signup", // redirect back to the signup page if there is an error
-      failureFlash: true // allow flash messages
-    })
-  );
-
-  app.get("/", function(req, res) {
-    res.render("index", {
-      msg: "Welcome!"
-    });
+  app.get("/", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public/index.html"));
   });
-
   // Load example page and pass in an example by id
-  app.get("/example/:id", function(req, res) {
-    db.Example.findOne({ where: { id: req.params.id } }).then(function(
-      dbExample
-    ) {
-      res.render("example", {
-        example: dbExample
-      });
+  app.get("/category/:id", function (req, res) {
+    db.Category.findOne({
+      where: {
+        id: req.params.id
+      },
+      attributes: ["category"],
+      include: [
+        {
+          model: db.useExp,
+          attributes: [
+            [db.sequelize.fn("sum", db.sequelize.col("spent")), "total_spent"]
+          ]
+        }
+      ]
+    }).then(function (dbAuthor) {
+      res.json(dbAuthor);
     });
   });
-
+  app.get("/users/:id", function (req, res) {
+    db.sequelize.query("SELECT User.id, User.userName, User.totalBudget, Categories->useExp.id AS Categories.useExp.id, sum(spent) AS Categories.useExp.total_spent FROM Users AS User LEFT OUTER JOIN Categories AS Categories ON User.id = Categories.UserId LEFT OUTER JOIN useExp AS Categories->useExp ON Categories.id = Categories->useExp.CategoryId WHERE User.id = '1'", { type: db.Sequelize.QueryTypes.SELECT }).then(function (data) {
+      console.log(data)
+      res.json(data)
+    })
+  });
   // Render 404 page for any unmatched routes
-  app.get("*", function(req, res) {
+  app.get("*", function (req, res) {
     res.render("404");
   });
 };

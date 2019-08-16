@@ -1,0 +1,166 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: white(255, 255, 50);
+    font-family: Tahoma, Helvetica, Arial, sans-serif;
+    font-size: 150px;
+  }
+
+  h2 {
+    margin: 0;
+    font-weight: bold;
+    font-size: 80px;
+    padding-left: 80px;
+  }
+
+
+
+
+  h1,
+
+  h6,
+  h5,
+  h3,
+  h4 {
+    padding-left: 10px;
+    font-size: 40px
+  }
+
+  #header {
+    font-weight: bold;
+
+  }
+
+
+
+  .chartCont {
+    padding: 0px 10px;
+
+  }
+
+
+
+  .border-bottom {
+    border-bottom: 1px dashed rgba(0, 117, 194, 0.2);
+    padding-left: 130px;
+    display: table;
+
+  }
+
+  .border-right {
+    border-right: 1px dashed rgba(0, 117, 194, 0.2);
+
+  }
+
+  #container {
+    width: 1200px;
+    margin: auto;
+    position: absolute;
+  }
+
+
+
+  #container>div {
+    width: 100%;
+    height: 250px;
+    background-color: black;
+
+  }
+
+
+
+  #logoContainer {
+    float: left;
+  }
+
+  #logoContainer img {
+    padding: 0px 10px;
+
+  }
+
+  #logoContainer div {
+    position: absolute;
+    top: 8px;
+    left: 95px;
+
+  }
+
+  #logoContainer div h2 {
+    color: #0075c2;
+  }
+
+  #logoContainer div h4 {
+    color: #0e948c;
+  }
+
+  #logoContainer div p {
+    color: #719146;
+    font-size: 50px;
+    padding: 27px 100px;
+  }
+
+  #userDetail {
+    float: fixed;
+  }
+
+  #userDetail img {
+    position: absolute;
+    top: 25px;
+    right: 0px;
+    padding-right: 375px;
+  }
+
+  #userDetail div {
+    position: absolute;
+    top: 35px;
+    right: 5px;
+    padding-right: 125px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #0075c2;
+  }
+
+  #userDetail div p {
+    margin: 0;
+  }
+
+  #userDetail div p:nth-child(2) {
+    color: #0e948c;
+  }
+
+  #header div:nth-child(3) {
+    clear: both;
+    display: inline-block;
+
+  }
+
+  #content div {
+    display: contents;
+  }
+
+  #content>div {
+    margin: 0px 20px;
+  }
+
+  #content>div:nth-child(1)>div {
+    margin: 20px 0 0;
+  }
+
+  #content>div:nth-child(2)>div {
+    margin: 0 0 20px;
+  }
+
+  #footer p {
+    margin: 0;
+    font-size: 9pt;
+    color: black;
+    padding: 5px 0;
+    text-align: center;
+  }
+
+  .row {
+    display: fixed;
+    padding-left: 140px;
+
+  }

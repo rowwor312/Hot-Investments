@@ -5,7 +5,14 @@ $(function() {
   var userName = $("#user_name");
   var pw = $("#password");
   var login = $("#login-form");
+  var income = $("#user-inc");
   var newLog = false;
+  var catBudObj = 
+    {
+      category: "",
+      catBudget: ""
+    };
+    console.log(catBudObj)
 
   $("#new-row").hide();
   $(".cat-val").hide();
@@ -23,18 +30,19 @@ $(function() {
 
     //creating new lable element and adding the "for" attribute and "Income" heading
     var incLabel = $("<label>");
-    incLabel.attr("for", "Income");
+    incLabel.attr("for", "Total-Budget");
     incLabel.text("Income");
 
     //creating new input element and adding attributes
     var incInput = $("<input>");
     incInput.attr({
       class: "form-control",
-      type: "income",
+      type: "tot-bud",
       id: "user-inc",
       placeholder: "$10000000"
     });
 
+    income = $("#user-inc");
     //loop generating category inputs
     for (i = 0; i < 4; i++) {
       var catInc = $("<input>");
@@ -85,6 +93,7 @@ $(function() {
   //new form row input fields
   $(document).on("click", "#new-row", function(event) {
     event.preventDefault();
+    income = $("#user-inc");
     var catInc = $("<input>");
     catInc.attr({
       class: "form-control",
@@ -129,25 +138,28 @@ $(function() {
       username: userName.val().trim(),
       password: pw.val().trim()
     };
-
-   
-
+    
     //loop that grabs inputs from generated form elements and addes it to object
     for (let i = 0; i<inputNum; i++) {
-      let budget = $("#bud-cat-" + i).val().trim();
-      let category = $("#bud-val-" +i).val().trim();
-      newUser["budget"+i] = budget;
-      newUser["category"+i] = category;
+      let category = $("#bud-cat-" + i).val().trim();
+      let budget = $("#bud-val-" +i).val().trim();
+      catBudObj.catBudget = budget;
+      catBudObj.category = category;
     } 
-
+    
+    console.log(catBudObj);
     if (newLog) {
       $.post("/signup", newUser);
-      console.log("new user" + newUser);
-      $.post("/api/category", newUser);
+      
+      for (let i = 0; i<inputNum; i++) {
+        catBudObj.catBudget[i];
+        catBudObj.category[i];
+        $.post("/api/category", catBudObj);
+      };
+
+      // console.log("category" + catBudObj);
     } else {
       $.post("/login", newLogin);
-      console.log("login" + newLogin);
-    }
-    
+    };
   });
 });
