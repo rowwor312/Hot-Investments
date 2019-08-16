@@ -140,24 +140,24 @@ $(function() {
     };
     
     //loop that grabs inputs from generated form elements and addes it to object
-    for (let i = 0; i<inputNum; i++) {
-      let category = $("#bud-cat-" + i).val().trim();
-      let budget = $("#bud-val-" +i).val().trim();
-      catBudObj.catBudget = budget;
-      catBudObj.category = category;
-    } 
     
     console.log(catBudObj);
     if (newLog) {
       $.post("/signup", newUser);
       
       for (let i = 0; i<inputNum; i++) {
+        let category = $("#bud-cat-" + i).val().trim();
+        let budget = $("#bud-val-" +i).val().trim();
+        catBudObj.catBudget = budget;
+        catBudObj.category = category;
+      } 
+
+      for (let i = 0; i<inputNum; i++) {
         catBudObj.catBudget[i];
         catBudObj.category[i];
         $.post("/api/category", catBudObj);
       };
 
-      // console.log("category" + catBudObj);
     } else {
       $.post("/login", newLogin);
     };
