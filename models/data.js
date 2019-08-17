@@ -13,6 +13,7 @@ module.exports = function(sequelize, DataTypes) {
       default: 0
     }
   });
+
   useExp.associate = function(models) {
     useExp.belongsTo(models.Category, {
       foreignKey: {

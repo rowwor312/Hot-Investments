@@ -22,7 +22,11 @@
     "express-session": "^1.16.2",
 =======
     "express-session": "^1.11.3",
+<<<<<<< HEAD
 >>>>>>> origin/master
+=======
+    "fusioncharts": "^3.14.0-sr.1",
+>>>>>>> de0be298da58ab6ad5184cc0a9cc81062ace5375
     "morgan": "^1.6.0",
     "mysql": "^2.7.0",
     "mysql2": "^1.6.5",

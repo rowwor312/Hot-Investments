@@ -1,15 +1,10 @@
 
 body, html {
-  background: url("") no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
   background-size: cover;
   background-color: yellow;
   font-family: 'Lexend Deca', sans-serif;
   color: black
 }
-
 
 .form-con {
   border-radius: 5px;
