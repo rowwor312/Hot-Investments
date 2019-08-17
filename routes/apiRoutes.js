@@ -53,9 +53,9 @@ module.exports = function (app, passport) {
   app.get("/api/gauges/:id", function (req, res) {
     db.Category.findAll({
       where: {
-        Userid: req.params.id
+        Userid: req.user.id
       },
-      attributes: ["category"],
+      attributes: ["category", "catBudget"],
       group: ["category"],
       include: [
         {
@@ -70,10 +70,11 @@ module.exports = function (app, passport) {
       ]
     }).then(function (dbCat) {
       var numCat = dbCat.length;
-
       var gagueValues = [];
       for (let i = 0; i < numCat; i++) {
-        gagueValues.push({ category: dbCat[i].category, total_spent: dbCat[i].useExps[0].total_spent, gagueId: "chart-container" + i })
+      var green = Math.floor(dbCat[i].catBudget * .8);
+      var red = Math.floor(dbCat[i].catBudget * 1.25);
+        gagueValues.push({ category: dbCat[i].category, green: green, red: red, catBudget: dbCat[i].catBudget, total_spent: dbCat[i].dataValues.useExps[0].dataValues.total_spent, gagueId: "chart-container" + i })
       }
       var info = { gague: gagueValues, numCat: numCat }
       res.json(info)

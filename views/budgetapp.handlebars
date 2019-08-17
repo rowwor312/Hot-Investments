@@ -128,24 +128,24 @@
                 "colorRange": {
                   "color": [{
                     "minValue": "0",
-                    "maxValue": "50",  //5
+                    "maxValue": data.gague[i].green,  //5
                     "code": "#6baa01"
                   },
                   {
-                    "minValue": "50",
-                    "maxValue": "75", //6
+                    "minValue": data.gague[i].green,
+                    "maxValue": data.gague[i].catBudget, //6
                     "code": "#f8bd19"
                   },
                   {
-                    "minValue": "75",
-                    "maxValue": "100",  //7
+                    "minValue": data.gague[i].catBudget,
+                    "maxValue": data.gague[i].red,  //7
                     "code": "#e44a00"
                   }
                   ]
                 },
                 "dials": {
                   "dial": [{
-                    "value": "25"  //8
+                    "value": data.gague[i].total_spent  //8
                   }]
                 }
               }
