@@ -118,6 +118,7 @@ $(function() {
   });
 
   //form submission
+
   $(login).on("submit", function formSubmit(event) {
     event.preventDefault();
 

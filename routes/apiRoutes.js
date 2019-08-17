@@ -27,16 +27,16 @@ module.exports = function (app, passport) {
       });
   })
 
-  app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect: '/profile', // redirect to the secure profile section
-    failureRedirect: '/signup', // redirect back to the signup page if there is an error
+  app.post("/signup", passport.authenticate("local-signup", {
+    successRedirect: "/profile", // redirect to the secure profile section
+    failureRedirect: "/signup", // redirect back to the signup page if there is an error
     failureFlash: true // allow flash messages
   }));
 
   // process the login form
-  app.post('/login', passport.authenticate('local-login', {
-    successRedirect: '/profile', // redirect to the secure profile section
-    failureRedirect: '/login', // redirect back to the signup page if there is an error
+  app.post("/login", passport.authenticate("local-login", {
+    successRedirect: "/profile", // redirect to the secure profile section
+    failureRedirect: "/login", // redirect back to the signup page if there is an error
     failureFlash: true // allow flash messages
   }),
     function (req, res) {
@@ -47,37 +47,8 @@ module.exports = function (app, passport) {
       } else {
         req.session.cookie.expires = false;
       }
-      res.redirect('/');
+      res.redirect("/");
     });
 
-  app.get("/api/gauges/:id", function (req, res) {
-    db.Category.findAll({
-      where: {
-        Userid: req.user.id
-      },
-      attributes: ["category", "catBudget"],
-      group: ["category"],
-      include: [
-        {
-          model: db.useExp,
-          attributes: [
-            [
-              db.sequelize.fn("sum", db.sequelize.col("spent")),
-              "total_spent"
-            ]
-          ]
-        }
-      ]
-    }).then(function (dbCat) {
-      var numCat = dbCat.length;
-      var gagueValues = [];
-      for (let i = 0; i < numCat; i++) {
-      var green = Math.floor(dbCat[i].catBudget * .8);
-      var red = Math.floor(dbCat[i].catBudget * 1.25);
-        gagueValues.push({ category: dbCat[i].category, green: green, red: red, catBudget: dbCat[i].catBudget, total_spent: dbCat[i].dataValues.useExps[0].dataValues.total_spent, gagueId: "chart-container" + i })
-      }
-      var info = { gague: gagueValues, numCat: numCat }
-      res.json(info)
-    });
-  });
-}
+   
+  };
