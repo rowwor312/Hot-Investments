@@ -17,7 +17,7 @@
     "dotenv": "^8.0.0",
     "ejs": "^2.3.2",
     "express": "^4.17.0",
-    "express-handlebars": "^3.1.0",
+    "express-handlebars": "^5.3.1",
     "express-session": "^1.11.3",
     "fusioncharts": "^3.14.0-sr.1",
     "morgan": "^1.6.0",
